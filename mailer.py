@@ -10,8 +10,11 @@ from email.mime.text import MIMEText
 
 
 def sendmail(res):
-    me = "ben.coste@gmail.com"
-    you = "ben.coste@gmail.com"
+    f=open('credentials.txt');
+    id=f.readline().strip()
+    password=f.readline().strip()
+    me = id
+    you = id
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
@@ -45,8 +48,7 @@ def sendmail(res):
     # Send the message via local SMTP server.
     s = smtplib.SMTP('smtp.gmail.com:587')
     s.starttls()
-    username = 'ben.coste'
-    password = 'Itadakimasu2!#'
+    username = id.split('@')[0]
     s.login(username,password)
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
